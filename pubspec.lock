@@ -186,3 +186,7 @@ packages:
     version: "2.1.4"
 sdks:
   dart: ">=2.19.4 <3.0.0"
+
+dependencies:
+ percent_indicator: ^4.0.1
+ import 'package:percent_indicator/percent_indicator.dart';
