@@ -25,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
       });
     });
 
-    new Timer(Duration(milliseconds: 10), () {
+    new Timer(Duration(milliseconds: 20), () {
       setState(() {
         _isVisible =
             true; // Now it is showing fade effect and navigating to Login page
@@ -36,32 +36,34 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: new BoxDecoration(
-        gradient: new LinearGradient(
+      
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
           colors: [
-            Theme.of(context).accentColor,
+            Theme.of(context).primaryColor,
             Theme.of(context).primaryColor
           ],
           begin: const FractionalOffset(0, 0),
           end: const FractionalOffset(1.0, 0.0),
           stops: [0.0, 1.0],
           tileMode: TileMode.clamp,
+          
         ),
       ),
       child: AnimatedOpacity(
         opacity: _isVisible ? 1.0 : 0,
-        duration: Duration(milliseconds: 1200),
+        duration: Duration(milliseconds: 1300),
         child: Center(
           child: Container(
-            height: 140.0,
-            width: 140.0,
+            height: 160.0,
+            width: 160.0,
             child: Center(
-              child: ClipOval(
-                child: Icon(
-                  Icons.android_outlined,
-                  size: 128,
-                ), //put your logo here
+              child: ImageIcon(
+                AssetImage("assets/bolt_logo.png"),
+                size: 128,
+                
               ),
+              
             ),
             decoration: BoxDecoration(
                 shape: BoxShape.circle,
