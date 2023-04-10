@@ -68,9 +68,9 @@ class CircularIndicator extends StatelessWidget {
       radius: 120.0,
       lineWidth: 13.0,
       animation: true,
-      percent: 0.7,
+      percent: 0.36,
       center: new Text(
-        "70.0%",
+        "36%",
         style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
       ),
       footer: new Text(

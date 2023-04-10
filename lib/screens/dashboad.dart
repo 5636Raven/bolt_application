@@ -20,7 +20,7 @@ class _dashboard extends State<dashboard> {
             Spacer(),
             CircularIndicator(),
             Spacer(),
-
+            ElevatedCardExample(),
             ElevatedCardExample(),
             Spacer(),
           ],
