@@ -1,5 +1,6 @@
 
 import 'dart:async';
+//import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:bolt_app/screens/dashboad.dart';
 
@@ -36,7 +37,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
@@ -47,7 +47,6 @@ class _SplashScreenState extends State<SplashScreen> {
           end: const FractionalOffset(1.0, 0.0),
           stops: [0.0, 1.0],
           tileMode: TileMode.clamp,
-          
         ),
       ),
       child: AnimatedOpacity(
@@ -55,18 +54,13 @@ class _SplashScreenState extends State<SplashScreen> {
         duration: Duration(milliseconds: 1300),
         child: Center(
           child: Container(
-            height: 160.0,
-            width: 160.0,
+            height: 200.0,
+            width: 200.0,
             child: Center(
-              child: ImageIcon(
-                AssetImage("assets/bolt_logo.png"),
-                size: 128,
-                
-              ),
-              
+              child: Image.asset('/bolt_app/assets/bolt_logo.png'),
             ),
             decoration: BoxDecoration(
-                shape: BoxShape.circle,
+                shape: BoxShape.rectangle,
                 color: Colors.white,
                 boxShadow: [
                   BoxShadow(

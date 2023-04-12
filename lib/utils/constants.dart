@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 //Color Palette
-const kThemeOffWhiteColor = Color(0xFFFEFAF6);
+const WhiteColor = Color(0xFFFEFAF6);
 const kThemePrimaryColor = Color.fromRGBO(139, 185, 231, 0); //pastel blue
 const kThemeSecondaryColor = Color.fromARGB(110, 93, 171, 223);
 const kThemeTertiaryColor = Color.fromARGB(255, 6, 66, 131);
