@@ -1,5 +1,5 @@
-
 import 'dart:async';
+//import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:bolt_app/screens/dashboad.dart';
 
@@ -9,6 +9,7 @@ class SplashScreen extends StatefulWidget {
   final String title;
 
   @override
+  
   _SplashScreenState createState() => _SplashScreenState();
 }
 
@@ -25,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
       });
     });
 
-    new Timer(Duration(milliseconds: 10), () {
+    new Timer(Duration(milliseconds: 20), () {
       setState(() {
         _isVisible =
             true; // Now it is showing fade effect and navigating to Login page
@@ -36,10 +37,10 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: new BoxDecoration(
-        gradient: new LinearGradient(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
           colors: [
-            Theme.of(context).accentColor,
+            Theme.of(context).primaryColor,
             Theme.of(context).primaryColor
           ],
           begin: const FractionalOffset(0, 0),
@@ -50,21 +51,16 @@ class _SplashScreenState extends State<SplashScreen> {
       ),
       child: AnimatedOpacity(
         opacity: _isVisible ? 1.0 : 0,
-        duration: Duration(milliseconds: 1200),
+        duration: Duration(milliseconds: 1300),
         child: Center(
           child: Container(
-            height: 140.0,
-            width: 140.0,
+            height: 200.0,
+            width: 200.0,
             child: Center(
-              child: ClipOval(
-                child: Icon(
-                  Icons.android_outlined,
-                  size: 128,
-                ), //put your logo here
-              ),
+              child: Image.asset('/assets/bolt log1.png'),
             ),
             decoration: BoxDecoration(
-                shape: BoxShape.circle,
+                shape: BoxShape.rectangle,
                 color: Colors.white,
                 boxShadow: [
                   BoxShadow(
