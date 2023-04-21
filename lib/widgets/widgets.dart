@@ -15,7 +15,7 @@ class ElevatedCardExample extends StatelessWidget {
       children: [
         FlipCard(
           rotateSide: RotateSide.top,
-          onTapFlipping: false,
+          onTapFlipping: true,
           axis: FlipAxis.horizontal,
           controller: controller,
           frontWidget: Center(
@@ -33,7 +33,7 @@ class ElevatedCardExample extends StatelessWidget {
                 child: SizedBox(
                   width: 150,
                   height: 150,
-                  child: Center(child: Text('40 V')),
+                  child: Center(child: Text('40 amps')),
                 ),
               ),
             
@@ -41,7 +41,7 @@ class ElevatedCardExample extends StatelessWidget {
         ),
         FlipCard(
           rotateSide: RotateSide.top,
-          onTapFlipping: false,
+          onTapFlipping: true,
           axis: FlipAxis.horizontal,
           controller: controller,
           frontWidget: Center(
@@ -86,29 +86,66 @@ class ElevatedCardExample extends StatelessWidget {
         // ),
  
 class ElevatedCardExample2 extends StatelessWidget {
-  const ElevatedCardExample2({super.key});
+  const ElevatedCardExample2({Key? key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = FlipCardController();
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Card(
-          child: SizedBox(
-            width: 180,
-            height: 150,
-            child: Center(child: Text('Charge Time')),
+        FlipCard(
+          rotateSide: RotateSide.top,
+          onTapFlipping: true,
+          axis: FlipAxis.horizontal,
+          controller: controller,
+          frontWidget: Center(
+              child: Card(
+                child: SizedBox(
+                  width: 150,
+                  height: 150,
+                  child: Center(child: Text('Time Left')),
+                ),
+              ),
+            
+          ),
+          backWidget: Center(
+              child: Card(
+                child: SizedBox(
+                  width: 150,
+                  height: 150,
+                  child: Center(child: Text('10:30 S')),
+                ),
+              ),
+            
           ),
         ),
-        Card(
-          //  child: Column(
-          child: SizedBox(
-            width: 180,
-            height: 150,
-            child: Center(child: Text('Power')),
-            //  child: Center(child: Text('30 kW/Hr'),)
+        FlipCard(
+          rotateSide: RotateSide.top,
+          onTapFlipping: true,
+          axis: FlipAxis.horizontal,
+          controller: controller,
+          frontWidget: Center(
+              child: Card(
+                child: SizedBox(
+                  width: 150,
+                  height: 150,
+                  child: Center(child: Text('Power')),
+                ),
+              ),
+            
           ),
-          //    )
+          backWidget: Center(
+              child: Card(
+                child: SizedBox(
+                  width: 150,
+                  height: 150,
+                  child: Center(child: Text('50 KWh')),
+                ),
+              ),
+            
+          ),
         ),
       ],
     );
