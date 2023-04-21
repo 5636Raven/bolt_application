@@ -13,7 +13,7 @@ class dashboard extends StatefulWidget {
 
 class _dashboard extends State<dashboard> {
  // static const String _title = 'Bolt';
-  static const String _quip = 'How fast can we get there';
+  static const String _quip = 'Bolt';
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,17 +22,18 @@ class _dashboard extends State<dashboard> {
       appBar: AppBar(
         //centerTitle: true,
         title: const Text(_quip),
-        backgroundColor: Colors.lightBlueAccent ,
+        backgroundColor: Colors.blueGrey ,
         shape:RoundedRectangleBorder( borderRadius: BorderRadius.only(bottomLeft: Radius.circular(30),bottomRight:Radius.circular(30) ))), 
 
         body: Column(
           children: <Widget>[
-            Spacer(),
+            //Spacer(),
             CircularIndicator(),
             Spacer(),
             ElevatedCardExample2(),
+           Spacer(flex: 1,),
             ElevatedCardExample(),
-            Spacer(),
+           Spacer(),
           ],
         ),
       ),

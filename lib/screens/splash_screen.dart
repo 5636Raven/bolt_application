@@ -1,4 +1,3 @@
-
 import 'dart:async';
 //import 'dart:html';
 import 'package:flutter/material.dart';
@@ -10,6 +9,7 @@ class SplashScreen extends StatefulWidget {
   final String title;
 
   @override
+  
   _SplashScreenState createState() => _SplashScreenState();
 }
 
@@ -57,7 +57,7 @@ class _SplashScreenState extends State<SplashScreen> {
             height: 200.0,
             width: 200.0,
             child: Center(
-              child: Image.asset('/bolt_app/assets/bolt_logo.png'),
+              child: Image.asset('/assets/bolt log1.png'),
             ),
             decoration: BoxDecoration(
                 shape: BoxShape.rectangle,

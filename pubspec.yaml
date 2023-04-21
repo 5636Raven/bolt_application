@@ -29,6 +29,8 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   percent_indicator: 4.2.3
+  flutter_flip_card: ^0.0.4
+  flip_card: ^0.7.0
   http: ^0.13.5
   realm: ^1.0.3
   flutter:

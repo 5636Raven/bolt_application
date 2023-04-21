@@ -1,26 +1,68 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+//import 'package:flip_card/flip_card.dart';
+import 'package:flutter_flip_card/flutter_flip_card.dart';
 
 class ElevatedCardExample extends StatelessWidget {
-  const ElevatedCardExample({super.key});
+  const ElevatedCardExample({Key? key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = FlipCardController();
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Card(
-          child: SizedBox(
-            width: 150,
-            height: 150,
-            child: Center(child: Text('Voltage')),
+        FlipCard(
+          rotateSide: RotateSide.top,
+          onTapFlipping: false,
+          axis: FlipAxis.horizontal,
+          controller: controller,
+          frontWidget: Center(
+              child: Card(
+                child: SizedBox(
+                  width: 150,
+                  height: 150,
+                  child: Center(child: Text('Current')),
+                ),
+              ),
+            
+          ),
+          backWidget: Center(
+              child: Card(
+                child: SizedBox(
+                  width: 150,
+                  height: 150,
+                  child: Center(child: Text('40 V')),
+                ),
+              ),
+            
           ),
         ),
-        Card(
-          child: SizedBox(
-            width: 150,
-            height: 150,
-            child: Center(child: Text('Current')),
+        FlipCard(
+          rotateSide: RotateSide.top,
+          onTapFlipping: false,
+          axis: FlipAxis.horizontal,
+          controller: controller,
+          frontWidget: Center(
+              child: Card(
+                child: SizedBox(
+                  width: 150,
+                  height: 150,
+                  child: Center(child: Text('Voltage')),
+                ),
+              ),
+            
+          ),
+          backWidget: Center(
+              child: Card(
+                child: SizedBox(
+                  width: 150,
+                  height: 150,
+                  child: Center(child: Text('40 V')),
+                ),
+              ),
+            
           ),
         ),
       ],
@@ -28,6 +70,21 @@ class ElevatedCardExample extends StatelessWidget {
   }
 }
 
+        // Card(
+        //   child: SizedBox(
+        //     width: 150,
+        //     height: 150,
+        //     child: Center(child: Text('Voltage')),
+        //   ),
+        // ),
+        // Card(
+        //   child: SizedBox(
+        //     width: 150,
+        //     height: 150,
+        //     child: Center(child: Text('Current')),
+        //   ),
+        // ),
+ 
 class ElevatedCardExample2 extends StatelessWidget {
   const ElevatedCardExample2({super.key});
 
@@ -58,31 +115,30 @@ class ElevatedCardExample2 extends StatelessWidget {
   }
 }
 
-class BarIndicator extends StatelessWidget {
-  const BarIndicator({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return LinearPercentIndicator(
-      width: 170.0,
-      animation: true,
-      animationDuration: 1000,
-      lineHeight: 20.0,
-      percent: 0.2,
-      center: Text("20.0%"),
-      linearStrokeCap: LinearStrokeCap.butt,
-      progressColor: Colors.lightBlueAccent,
-    );
-  }
-}
+// class BarIndicator extends StatelessWidget {
+//   const BarIndicator({super.key});
+//   @override
+//   Widget build(BuildContext context) {
+//     return LinearPercentIndicator(
+//       width: 170.0,
+//       animation: true,
+//       animationDuration: 1000,
+//       lineHeight: 20.0,
+//       percent: 0.2,
+//       center: Text("20.0%"),
+//       linearStrokeCap: LinearStrokeCap.butt,
+//       progressColor: Colors.lightBlueAccent,
+//     );
+//   }
+// }
 
 // ignore: camel_case_types, non_constant_identifier_names
 class CircularIndicator extends StatelessWidget {
   const CircularIndicator({super.key});
-
   @override
   Widget build(BuildContext context) {
     return CircularPercentIndicator(
-      radius: 120.0,
+      radius: 100.0,
       lineWidth: 13.0,
       animation: true,
       percent: 0.80,
