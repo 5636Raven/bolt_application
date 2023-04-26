@@ -57,7 +57,7 @@ class _SplashScreenState extends State<SplashScreen> {
             height: 200.0,
             width: 200.0,
             child: Center(
-              child: Image.asset('/assets/bolt log1.png'),
+              child: Image.asset('/Users/ravenlopez/Documents/Bolt/bolt_app/assets/bolt_logo1.png'),
             ),
             decoration: BoxDecoration(
                 shape: BoxShape.rectangle,

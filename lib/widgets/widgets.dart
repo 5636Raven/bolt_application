@@ -103,7 +103,7 @@ class ElevatedCardExample2 extends StatelessWidget {
           frontWidget: Center(
               child: Card(
                 child: SizedBox(
-                  width: 150,
+                  width: 175,
                   height: 150,
                   child: Center(child: Text('Time Left')),
                 ),
@@ -113,7 +113,7 @@ class ElevatedCardExample2 extends StatelessWidget {
           backWidget: Center(
               child: Card(
                 child: SizedBox(
-                  width: 150,
+                  width: 175,
                   height: 150,
                   child: Center(child: Text('10:30 S')),
                 ),
@@ -129,7 +129,7 @@ class ElevatedCardExample2 extends StatelessWidget {
           frontWidget: Center(
               child: Card(
                 child: SizedBox(
-                  width: 150,
+                  width: 175,
                   height: 150,
                   child: Center(child: Text('Power')),
                 ),
@@ -139,7 +139,7 @@ class ElevatedCardExample2 extends StatelessWidget {
           backWidget: Center(
               child: Card(
                 child: SizedBox(
-                  width: 150,
+                  width: 175,
                   height: 150,
                   child: Center(child: Text('50 KWh')),
                 ),
@@ -192,3 +192,5 @@ class CircularIndicator extends StatelessWidget {
     );
   }
 }
+
+
