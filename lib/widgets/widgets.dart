@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import "package:bolt_app/utils/constants.dart";
+
 //import 'package:flip_card/flip_card.dart';
 import 'package:flutter_flip_card/flutter_flip_card.dart';
 
@@ -20,20 +22,24 @@ class ElevatedCardExample extends StatelessWidget {
           controller: controller,
           frontWidget: Center(
               child: Card(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 child: SizedBox(
-                  width: 150,
+                  width: 160,
                   height: 150,
-                  child: Center(child: Text('Current')),
+                  child: Center(child: Text('Current',
+                  style: kGetStartedButtonText)),
                 ),
               ),
             
           ),
           backWidget: Center(
               child: Card(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 child: SizedBox(
-                  width: 150,
+                  width: 160,
                   height: 150,
-                  child: Center(child: Text('40 amps')),
+                  child: Center(child: Text('40 amps',
+                  style: kGetStartedButtonText)),
                 ),
               ),
             
@@ -46,20 +52,24 @@ class ElevatedCardExample extends StatelessWidget {
           controller: controller,
           frontWidget: Center(
               child: Card(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 child: SizedBox(
-                  width: 150,
+                  width: 160,
                   height: 150,
-                  child: Center(child: Text('Voltage')),
+                  child: Center(child: Text('Voltage',
+                  style: kGetStartedButtonText)),
                 ),
               ),
             
           ),
           backWidget: Center(
               child: Card(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 child: SizedBox(
-                  width: 150,
+                  width: 160,
                   height: 150,
-                  child: Center(child: Text('40 V')),
+                  child: Center(child: Text('40 V',
+                  style: kGetStartedButtonText)),
                 ),
               ),
             
@@ -102,16 +112,19 @@ class ElevatedCardExample2 extends StatelessWidget {
           controller: controller,
           frontWidget: Center(
               child: Card(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 child: SizedBox(
                   width: 175,
                   height: 150,
-                  child: Center(child: Text('Time Left')),
+                  child: Center(child: Text('Time Left',
+                  style: kGetStartedButtonText)),
                 ),
               ),
             
           ),
           backWidget: Center(
               child: Card(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 child: SizedBox(
                   width: 175,
                   height: 150,
@@ -128,20 +141,23 @@ class ElevatedCardExample2 extends StatelessWidget {
           controller: controller,
           frontWidget: Center(
               child: Card(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 child: SizedBox(
                   width: 175,
                   height: 150,
-                  child: Center(child: Text('Power')),
+                  child: Center(child: Text('Power',
+                  style: kGetStartedButtonText)),
                 ),
               ),
             
           ),
           backWidget: Center(
               child: Card(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 child: SizedBox(
                   width: 175,
                   height: 150,
-                  child: Center(child: Text('50 KWh')),
+                  child: Center(child: Text('50 KWh', style: kGetStartedButtonText)),
                 ),
               ),
             
@@ -151,23 +167,6 @@ class ElevatedCardExample2 extends StatelessWidget {
     );
   }
 }
-
-// class BarIndicator extends StatelessWidget {
-//   const BarIndicator({super.key});
-//   @override
-//   Widget build(BuildContext context) {
-//     return LinearPercentIndicator(
-//       width: 170.0,
-//       animation: true,
-//       animationDuration: 1000,
-//       lineHeight: 20.0,
-//       percent: 0.2,
-//       center: Text("20.0%"),
-//       linearStrokeCap: LinearStrokeCap.butt,
-//       progressColor: Colors.lightBlueAccent,
-//     );
-//   }
-// }
 
 // ignore: camel_case_types, non_constant_identifier_names
 class CircularIndicator extends StatelessWidget {
@@ -181,14 +180,14 @@ class CircularIndicator extends StatelessWidget {
       percent: 0.80,
       center: new Text(
         "80%",
-        style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+        style: kLogInScreenHeadingText //new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
       ),
       footer: new Text(
         "Charging percentage",
-        style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),
+        style: kLogInScreenHeadingText//new TextStyle(fontWeight: FontWeight.bold, fontSize: 19.0),
       ),
       circularStrokeCap: CircularStrokeCap.round,
-      progressColor: Colors.blueGrey,
+      progressColor: Color.fromARGB(255, 6, 66, 131),
     );
   }
 }
