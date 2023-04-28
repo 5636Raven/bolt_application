@@ -22,30 +22,18 @@ const kGetStartedLogoTextStyle = TextStyle(
   fontWeight: FontWeight.w600,
 );
 
-const kGetStartedTaglineTextStyle = TextStyle(
-  fontSize: 16,
-  fontFamily: "Poppins",
-  color: kThemePrimaryColor,
-);
 
 const kGetStartedDescriptionText = TextStyle(
   fontSize: 16,
   fontFamily: "Montserrat",
-  color: kThemePrimaryColor,
+  color: kThemeTertiaryColor,
 );
 
 const kGetStartedButtonText = TextStyle(
   fontSize: 24,
   fontFamily: "Poppins",
-  color: Colors.white,
-  fontWeight: FontWeight.w600,
-);
-
-const kDashboardLogoTextStyle = TextStyle(
-  fontSize: 16,
-  fontFamily: "Poppins",
-  color: kThemePrimaryColor,
-  fontWeight: FontWeight.w600,
+  color: kThemeTertiaryColor,
+  fontWeight: FontWeight.w400,
 );
 
 const kDashboardHeadingTextStyle = TextStyle(
@@ -64,14 +52,14 @@ const kMetricsHeadingTextStyle = TextStyle(
 const kMetricsValueTextStyle = TextStyle(
   fontSize: 36,
   fontFamily: "Poppins",
-  color: kThemePrimaryColor,
+  color: kThemeTertiaryColor,
   fontWeight: FontWeight.w500,
 );
 
 const kMetricsValueSecondaryTextStyle = TextStyle(
   fontSize: 24,
   fontFamily: "Poppins",
-  color: kThemePrimaryColor,
+  color: kThemeTertiaryColor,
   fontWeight: FontWeight.w500,
 );
 
@@ -88,12 +76,6 @@ const kDashboardTimeHeadingText = TextStyle(
   fontWeight: FontWeight.w500,
 );
 
-const kMetricLineChartHeadingText = TextStyle(
-  fontSize: 14,
-  fontFamily: "Poppins",
-  color: kThemePrimaryColor,
-  fontWeight: FontWeight.w400,
-);
 
 const kLogInScreenHeadingText = TextStyle(
   fontSize: 26,
@@ -109,36 +91,8 @@ const kLogInScreenSubheadingText = TextStyle(
   fontWeight: FontWeight.w400,
 );
 
-const kLogInScreenForgotPasswordText = TextStyle(
-  fontSize: 16,
-  fontFamily: "Poppins",
-  color: kThemeTertiaryColor,
-  fontWeight: FontWeight.w500,
-);
 
-const kLogInScreenCreateAccountText = TextStyle(
-  fontSize: 16,
-  fontFamily: "Poppins",
-  color: kThemeTertiaryColor,
-  fontWeight: FontWeight.w500,
-  decoration: TextDecoration.underline,
-);
 
-const kUserProfileInfoText = TextStyle(
-  fontSize: 14,
-  fontFamily: "Poppins",
-  color: kThemeDarkGrayColor,
-);
 
-const kUserProfileButtonText = TextStyle(
-  fontSize: 14,
-  fontFamily: "Poppins",
-  fontWeight: FontWeight.w500,
-  color: kThemeTertiaryColor,
-);
 
-const kChangePasswordText = TextStyle(
-  fontSize: 14,
-  fontFamily: "Poppins",
-  color: kThemeDarkGrayColor,
-);
+

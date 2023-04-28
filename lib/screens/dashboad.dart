@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 //import 'package:flutter_grid_button/flutter_grid_button.dart';
 import 'package:bolt_app/widgets/widgets.dart';
+import "package:bolt_app/utils/constants.dart";
+
 
 class dashboard extends StatefulWidget {
   const dashboard({Key? key}) : super(key: key);
@@ -13,7 +15,7 @@ class dashboard extends StatefulWidget {
 
 class _dashboard extends State<dashboard> {
  // static const String _title = 'Bolt';
-  static const String _quip = 'Bolt';
+  static const String _quip = 'Bolt Metrics';
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,12 +24,12 @@ class _dashboard extends State<dashboard> {
       appBar: AppBar(
         //centerTitle: true,
         title: const Text(_quip),
-        backgroundColor: Colors.blueGrey ,
-        shape:RoundedRectangleBorder( borderRadius: BorderRadius.only(bottomLeft: Radius.circular(30),bottomRight:Radius.circular(30) ))), 
+        backgroundColor: kThemeTertiaryColor ,
+        shape:RoundedRectangleBorder( borderRadius: BorderRadius.only(bottomLeft: Radius.circular(42),bottomRight:Radius.circular(42) ))), 
 
         body: Column(
           children: <Widget>[
-            //Spacer(),
+            Spacer(flex: 1,),
             CircularIndicator(),
             Spacer(),
             ElevatedCardExample2(),

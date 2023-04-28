@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
   bool _isVisible = false;
 
   _SplashScreenState() {
-    new Timer(const Duration(milliseconds: 2000), () {
+    new Timer(const Duration(milliseconds: 5000), () {
       setState(() {
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (context) => dashboard()),
@@ -26,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
       });
     });
 
-    new Timer(Duration(milliseconds: 20), () {
+    new Timer(Duration(milliseconds: 10), () {
       setState(() {
         _isVisible =
             true; // Now it is showing fade effect and navigating to Login page
@@ -40,7 +40,7 @@ class _SplashScreenState extends State<SplashScreen> {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Theme.of(context).primaryColor,
+            Theme.of(context).primaryColorDark,
             Theme.of(context).primaryColor
           ],
           begin: const FractionalOffset(0, 0),
@@ -54,8 +54,8 @@ class _SplashScreenState extends State<SplashScreen> {
         duration: Duration(milliseconds: 1300),
         child: Center(
           child: Container(
-            height: 200.0,
-            width: 200.0,
+            height: 140.0,
+            width: 100.0,
             child: Center(
               child: Image.asset('/Users/ravenlopez/Documents/Bolt/bolt_app/assets/bolt_logo1.png'),
             ),
