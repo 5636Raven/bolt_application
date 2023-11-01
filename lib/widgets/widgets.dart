@@ -6,7 +6,7 @@ import "package:bolt_app/utils/constants.dart";
 import 'package:flutter_flip_card/flutter_flip_card.dart';
 
 class ElevatedCardExample extends StatelessWidget {
-  const ElevatedCardExample({Key? key});
+  const ElevatedCardExample({super.key, Key? keys});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class ElevatedCardExample extends StatelessWidget {
           frontWidget: Center(
               child: Card(
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                child: SizedBox(
+                child: const SizedBox(
                   width: 160,
                   height: 150,
                   child: Center(child: Text('Current',
@@ -35,7 +35,7 @@ class ElevatedCardExample extends StatelessWidget {
           backWidget: Center(
               child: Card(
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                child: SizedBox(
+                child: const SizedBox(
                   width: 160,
                   height: 150,
                   child: Center(child: Text('40 amps',
@@ -53,7 +53,7 @@ class ElevatedCardExample extends StatelessWidget {
           frontWidget: Center(
               child: Card(
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                child: SizedBox(
+                child: const SizedBox(
                   width: 160,
                   height: 150,
                   child: Center(child: Text('Voltage',
@@ -65,7 +65,7 @@ class ElevatedCardExample extends StatelessWidget {
           backWidget: Center(
               child: Card(
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                child: SizedBox(
+                child: const SizedBox(
                   width: 160,
                   height: 150,
                   child: Center(child: Text('40 V',
@@ -96,7 +96,7 @@ class ElevatedCardExample extends StatelessWidget {
         // ),
  
 class ElevatedCardExample2 extends StatelessWidget {
-  const ElevatedCardExample2({Key? key});
+  const ElevatedCardExample2({super.key, Key? keys});
 
   @override
   Widget build(BuildContext context) {
@@ -113,7 +113,7 @@ class ElevatedCardExample2 extends StatelessWidget {
           frontWidget: Center(
               child: Card(
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                child: SizedBox(
+                child: const SizedBox(
                   width: 175,
                   height: 150,
                   child: Center(child: Text('Time Left',
@@ -125,10 +125,11 @@ class ElevatedCardExample2 extends StatelessWidget {
           backWidget: Center(
               child: Card(
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                child: SizedBox(
+                child: const SizedBox(
                   width: 175,
                   height: 150,
-                  child: Center(child: Text('10:30 S')),
+                  child: Center(child: Text('10:30 S',
+                  style: kGetStartedButtonText)),
                 ),
               ),
             
@@ -142,7 +143,7 @@ class ElevatedCardExample2 extends StatelessWidget {
           frontWidget: Center(
               child: Card(
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                child: SizedBox(
+                child: const SizedBox(
                   width: 175,
                   height: 150,
                   child: Center(child: Text('Power',
@@ -154,7 +155,7 @@ class ElevatedCardExample2 extends StatelessWidget {
           backWidget: Center(
               child: Card(
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                child: SizedBox(
+                child: const SizedBox(
                   width: 175,
                   height: 150,
                   child: Center(child: Text('50 KWh', style: kGetStartedButtonText)),
@@ -177,17 +178,17 @@ class CircularIndicator extends StatelessWidget {
       radius: 100.0,
       lineWidth: 13.0,
       animation: true,
-      percent: 0.80,
-      center: new Text(
-        "80%",
+      percent: 0.95,
+      center: const Text(
+        "95%",
         style: kLogInScreenHeadingText //new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
       ),
-      footer: new Text(
+      footer: const Text(
         "Charging percentage",
         style: kLogInScreenHeadingText//new TextStyle(fontWeight: FontWeight.bold, fontSize: 19.0),
       ),
       circularStrokeCap: CircularStrokeCap.round,
-      progressColor: Color.fromARGB(255, 6, 66, 131),
+      progressColor: const Color.fromARGB(255, 6, 66, 131),
     );
   }
 }

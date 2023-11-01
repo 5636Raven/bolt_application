@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:percent_indicator/percent_indicator.dart';
 //import 'package:flutter_grid_button/flutter_grid_button.dart';
 import 'package:bolt_app/widgets/widgets.dart';
 import "package:bolt_app/utils/constants.dart";
@@ -25,9 +23,9 @@ class _dashboard extends State<dashboard> {
         //centerTitle: true,
         title: const Text(_quip),
         backgroundColor: kThemeTertiaryColor ,
-        shape:RoundedRectangleBorder( borderRadius: BorderRadius.only(bottomLeft: Radius.circular(42),bottomRight:Radius.circular(42) ))), 
+        shape:const RoundedRectangleBorder( borderRadius: BorderRadius.only(bottomLeft: Radius.circular(42),bottomRight:Radius.circular(42) ))), 
 
-        body: Column(
+        body: const Column(
           children: <Widget>[
             Spacer(flex: 1,),
             CircularIndicator(),

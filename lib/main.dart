@@ -20,11 +20,11 @@ class Bolt extends StatelessWidget {
       title: 'Bolt',
       theme: ThemeData(
         primaryColor: _primaryColor,
-        accentColor: _accentColor,
+        secondaryHeaderColor: _accentColor,
         scaffoldBackgroundColor: HexColor('FFE3F2D'),
         primarySwatch: Colors.grey,
       ),
-      home: SplashScreen(title: 'How fast can we get there'),
+      home: const SplashScreen(title: 'How fast can we get there'),
     );
   }
 }
