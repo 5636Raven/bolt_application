@@ -184,7 +184,7 @@ class CircularIndicator extends StatelessWidget {
         style: kLogInScreenHeadingText //new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
       ),
       footer: const Text(
-        "Charging percentage",
+        "Charging Percentage",
         style: kLogInScreenHeadingText//new TextStyle(fontWeight: FontWeight.bold, fontSize: 19.0),
       ),
       circularStrokeCap: CircularStrokeCap.round,
