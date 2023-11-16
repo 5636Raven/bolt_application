@@ -68,7 +68,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   )
                 ]),
             child: Center(
-              child: Image.asset('/Users/ravenlopez/Documents/Bolt/bolt_app/assets/bolt_logo1.png'),
+              child: Image.asset('/Users/ravenlopez/Desktop/bolt/bolt_application/assets/bolt_logo1.png'),
             ),
           ),
         ),

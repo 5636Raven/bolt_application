@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>903461213974-vkj1tugdvahov15cgesbfvgst0cu7o79.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.903461213974-vkj1tugdvahov15cgesbfvgst0cu7o79</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDvBgSOtjGR48-bYtP5WWxjJajoqG7tAVw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>903461213974</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.boltApplication</string>
+	<key>PROJECT_ID</key>
+	<string>bolt-953cb</string>
+	<key>STORAGE_BUCKET</key>
+	<string>bolt-953cb.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:903461213974:ios:7986a8a752c394a0b12237</string>
+	<key>DATABASE_URL</key>
+	<string>https://bolt-953cb-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>

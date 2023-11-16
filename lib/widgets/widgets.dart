@@ -128,7 +128,7 @@ class ElevatedCardExample2 extends StatelessWidget {
                 child: const SizedBox(
                   width: 175,
                   height: 150,
-                  child: Center(child: Text('10:30 S',
+                  child: Center(child: Text('9:00',
                   style: kGetStartedButtonText)),
                 ),
               ),
@@ -158,7 +158,7 @@ class ElevatedCardExample2 extends StatelessWidget {
                 child: const SizedBox(
                   width: 175,
                   height: 150,
-                  child: Center(child: Text('50 KWh', style: kGetStartedButtonText)),
+                  child: Center(child: Text('16 KWh', style: kGetStartedButtonText)),
                 ),
               ),
             
@@ -178,9 +178,9 @@ class CircularIndicator extends StatelessWidget {
       radius: 100.0,
       lineWidth: 13.0,
       animation: true,
-      percent: 0.95,
+      percent: 0.0,
       center: const Text(
-        "95%",
+        "0%",
         style: kLogInScreenHeadingText //new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
       ),
       footer: const Text(
