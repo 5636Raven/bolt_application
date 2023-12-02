@@ -84,6 +84,6 @@ class DefaultFirebaseOptions {
     databaseURL: 'https://bolt-953cb-default-rtdb.firebaseio.com',
     storageBucket: 'bolt-953cb.appspot.com',
     iosClientId: '903461213974-jaihjln047oi1rlr4r5trjmihh00mqic.apps.googleusercontent.com',
-    iosBundleId: 'com.example.boltApp',
+    iosBundleId: 'com.example.boltApplication',
   );
 }

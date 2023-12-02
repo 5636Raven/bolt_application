@@ -34,7 +34,6 @@ class Bolt extends StatelessWidget {
 }
 
 
-
 // import 'package:bolt_app/screens/splash_screen.dart';
 // import 'package:flutter/material.dart';
 // import 'package:hexcolor/hexcolor.dart';
