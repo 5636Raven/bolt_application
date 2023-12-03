@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import "package:bolt_app/utils/constants.dart";
-import 'package:firebase_database/firebase_database.dart';
 import 'package:bolt_app/utils/constants.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_flip_card/flutter_flip_card.dart';
-import 'package:bolt_app/firebase_options.dart';
 import 'dart:async';
-
 
 class ElevatedCardExample extends StatefulWidget {
   @override
@@ -24,84 +21,99 @@ class _ElevatedCardExampleState extends State<ElevatedCardExample> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Flexible(child: 
-        FlipCard(
-          frontWidget: buildCard('Current', currentData, 'Amps'),
-          backWidget: buildCard('Current', currentData, 'Amps'),
-          controller: controller,
-          rotateSide: RotateSide.top,
+        Expanded(
+          child: ElevatedButton(
+            onPressed: () {
+              updateCurrentData();
+            },
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+              elevation: MaterialStateProperty.all<double>(0), // Set elevation to 0 to remove shadow
+              shape: MaterialStateProperty.all<OutlinedBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+            ),
+            child: buildCard('Current', currentData, 'Amps', () {
+              updateCurrentData();
+            }),
+          ),
         ),
-        ),
-        Flexible(child: 
-        FlipCard(
-          frontWidget: buildCard('Voltage', voltageData, 'V'),
-          backWidget: buildCard('Voltage', voltageData, 'V'),
-          controller: controller,
-          rotateSide: RotateSide.top,
-        ),
+        Expanded(
+          child: ElevatedButton(
+            onPressed: () {
+              updateVoltageData();
+            },
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+              elevation: MaterialStateProperty.all<double>(0), // Set elevation to 0 to remove shadow
+              shape: MaterialStateProperty.all<OutlinedBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+            ),
+            child: buildCard('Voltage', voltageData, 'V', () {
+              updateVoltageData();
+            }),
+          ),
         ),
       ],
     );
   }
 
-  Widget buildCard(String title, String data, String unit) {
-  return Center(
-    child: Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      child: SizedBox(
-        width: 185, // Adjust the width as needed
-        height: 150,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              title,
-              style: kGetStartedButtonText, // Style for the title
-            ),
-            SizedBox(height: 10), // Add some spacing between title and data
-            Text(
-              data,
-              style: kGetStartedButtonText, // Style for the data
-            ),
-            SizedBox(height: 10), // Add some spacing between data and additional text
-            Text(
-              " ",
-              style: kGetStartedButtonText, // Style for the additional text
-            ),
-          ],
+  Widget buildCard(String title, String data, String unit, VoidCallback onTapCallback) {
+    return Center(
+      child: Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        child: SizedBox(
+          width: 500, // Adjust the width as needed
+          height: 175,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                title,
+                style: kLogInScreenHeadingText, // Style for the title
+              ),
+              SizedBox(height: 20), // Add some spacing between title and data
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    data,
+                    style: kGetStartedButtonText, // Style for the data
+                  ),
+                  SizedBox(width: 5), // Add some spacing between data and unit
+                  Text(
+                    unit,
+                    style: kGetStartedButtonText, // Style for the unit
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
-    ),
-  );
-}
+    );
+  }
 
-
- 
-
-void readDataFromFirebase(String dataPath, Function(String) updateData) {
-  DatabaseReference reference = FirebaseDatabase.instance.ref();
-  reference.child(dataPath).once().then((DatabaseEvent event) {
-    if (event.snapshot != null) {
-      DataSnapshot snapshot = event.snapshot;
-      String newData = snapshot.value.toString();
-      print('Data: $newData');
-      updateData(newData);
-    } else {
-      print('Error: Snapshot is null');
-    }
-  }).catchError((error) {
-    print('Error reading data from Firebase: $error');
-  });
-}
-
-void updateDataPeriodically() {
-  const updateInterval = Duration(seconds: 2); // Adjust the interval as needed
-
-  Timer.periodic(updateInterval, (Timer timer) {
-    updateCurrentData();
-    updateVoltageData();
-  });
-}
+  void readDataFromFirebase(String dataPath, Function(String) updateData) {
+    DatabaseReference reference = FirebaseDatabase.instance.ref();
+    reference.child(dataPath).once().then((DatabaseEvent event) {
+      if (event.snapshot != null) {
+        DataSnapshot snapshot = event.snapshot;
+        String newData = snapshot.value.toString();
+        print('Data: $newData');
+        updateData(newData);
+      } else {
+        print('Error: Snapshot is null');
+      }
+    }).catchError((error) {
+      print('Error reading data from Firebase: $error');
+    });
+  }
 
   void updateCurrentData() {
     readDataFromFirebase('/power_data/Current', (newData) {
@@ -137,109 +149,82 @@ class _ElevatedCardExampleState2 extends State<ElevatedCardExample2> {
   final DatabaseReference databaseReference = FirebaseDatabase.instance.ref();
   final controller = FlipCardController();
 
-  String powerData = '0 Watts'; // Initial data for current
+  String powerData = '0 Watts'; // Initial data for power
 
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        FlipCard(
-          frontWidget: buildCard('Power', powerData, 'Watts'),
-          backWidget: buildCard('Power', powerData, 'Watts'),
-          controller: controller,
-          rotateSide: RotateSide.top,
-        ),
-        FlipCard(
-          rotateSide: RotateSide.top,
-          onTapFlipping: true,
-          axis: FlipAxis.horizontal,
-          controller: controller,
-          frontWidget: Center(
-            child: Card(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)),
-              child: const SizedBox(
-                width: 175,
-                height: 150,
-                child: Center(
-                    child: Text('Time Left',
-                        style: kGetStartedButtonText)),
+        Expanded(
+          child: ElevatedButton(
+            onPressed: () {
+              updatePowerData();
+            },
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+              elevation: MaterialStateProperty.all<double>(0), // Set elevation to 0 to remove shadow
+              shape: MaterialStateProperty.all<OutlinedBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
               ),
             ),
-          ),
-          backWidget: Center(
-            child: Card(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)),
-              child: const SizedBox(
-                width: 175,
-                height: 150,
-                child: Center(
-                    child: Text('9:00', style: kGetStartedButtonText)),
-              ),
-            ),
+            child: buildCard('Power', powerData, 'Watts', () {
+              updatePowerData();
+            }),
           ),
         ),
       ],
     );
   }
 
-  Widget buildCard(String title, String data, String unit) {
-  return Center(
-    child: Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      child: SizedBox(
-        width: 200, // Adjust the width as needed
-        height: 150,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              title,
-              style: kGetStartedButtonText, // Style for the title
-            ),
-            SizedBox(height: 10), // Add some spacing between title and data
-            Text(
-              data,
-              style: kGetStartedButtonText, // Style for the data
-            ),
-            SizedBox(height: 10), // Add some spacing between data and additional text
-            Text(
-              " ",
-              style: kGetStartedButtonText, // Style for the additional text
-            ),
-          ],
+  Widget buildCard(String title, String data, String unit, VoidCallback onTapCallback) {
+    return Center(
+      child: Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        child: SizedBox(
+          width: 200, // Adjust the width as needed
+          height: 150,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                title,
+                style: kLogInScreenHeadingText, // Style for the title
+              ),
+              SizedBox(height: 10), // Add some spacing between title and data
+              Text(
+                data,
+                style: kGetStartedButtonText, // Style for the data
+              ),
+              SizedBox(height: 10), // Add some spacing between data and additional text
+              Text(
+                unit,
+                style: kGetStartedButtonText, // Style for the additional text
+              ),
+            ],
+          ),
         ),
       ),
-    ),
-  );
-}
+    );
+  }
 
- void readDataFromFirebase(String dataPath, Function(String) updateData) {
-  DatabaseReference reference = FirebaseDatabase.instance.ref();
-  reference.child(dataPath).once().then((DatabaseEvent event) {
-    if (event.snapshot != null) {
-      DataSnapshot snapshot = event.snapshot;
-      String newData = snapshot.value.toString();
-      print('Data: $newData');
-      updateData(newData);
-    } else {
-      print('Error: Snapshot is null');
-    }
-  }).catchError((error) {
-    print('Error reading data from Firebase: $error');
-  });
-}
-
-void updateDataPeriodically() {
-  const updateInterval = Duration(seconds: 2); // Adjust the interval as needed
-
-  Timer.periodic(updateInterval, (Timer timer) {
-   updatePowerData();
-  });
-}
-
+  void readDataFromFirebase(String dataPath, Function(String) updateData) {
+    DatabaseReference reference = FirebaseDatabase.instance.ref();
+    reference.child(dataPath).once().then((DatabaseEvent event) {
+      if (event.snapshot != null) {
+        DataSnapshot snapshot = event.snapshot;
+        String newData = snapshot.value.toString();
+        print('Data: $newData');
+        updateData(newData);
+      } else {
+        print('Error: Snapshot is null');
+      }
+    }).catchError((error) {
+      print('Error reading data from Firebase: $error');
+    });
+  }
 
   void updatePowerData() {
     readDataFromFirebase('/power_data/Power', (newData) {
