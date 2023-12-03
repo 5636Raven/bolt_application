@@ -1,196 +1,243 @@
 import 'package:flutter/material.dart';
-import 'package:percent_indicator/percent_indicator.dart';
-import "package:bolt_app/utils/constants.dart";
-
-//import 'package:flip_card/flip_card.dart';
+import 'package:bolt_app/utils/constants.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_flip_card/flutter_flip_card.dart';
+import 'dart:async';
 
-class ElevatedCardExample extends StatelessWidget {
-  const ElevatedCardExample({super.key, Key? keys});
+class ElevatedCardExample extends StatefulWidget {
+  @override
+  _ElevatedCardExampleState createState() => _ElevatedCardExampleState();
+}
+
+class _ElevatedCardExampleState extends State<ElevatedCardExample> {
+  final DatabaseReference databaseReference = FirebaseDatabase.instance.ref();
+  final controller = FlipCardController();
+
+  String currentData = '0 amps'; // Initial data for current
+  String voltageData = '0 V'; // Initial data for voltage
 
   @override
   Widget build(BuildContext context) {
-    final controller = FlipCardController();
-
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        FlipCard(
-          rotateSide: RotateSide.top,
-          onTapFlipping: true,
-          axis: FlipAxis.horizontal,
-          controller: controller,
-          frontWidget: Center(
-              child: Card(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                child: const SizedBox(
-                  width: 160,
-                  height: 150,
-                  child: Center(child: Text('Current',
-                  style: kGetStartedButtonText)),
+        Expanded(
+          child: ElevatedButton(
+            onPressed: () {
+              updateCurrentData();
+            },
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+              elevation: MaterialStateProperty.all<double>(0), // Set elevation to 0 to remove shadow
+              shape: MaterialStateProperty.all<OutlinedBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
                 ),
               ),
-            
-          ),
-          backWidget: Center(
-              child: Card(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                child: const SizedBox(
-                  width: 160,
-                  height: 150,
-                  child: Center(child: Text('40 amps',
-                  style: kGetStartedButtonText)),
-                ),
-              ),
-            
+            ),
+            child: buildCard('Current', currentData, 'Amps', () {
+              updateCurrentData();
+            }),
           ),
         ),
-        FlipCard(
-          rotateSide: RotateSide.top,
-          onTapFlipping: true,
-          axis: FlipAxis.horizontal,
-          controller: controller,
-          frontWidget: Center(
-              child: Card(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                child: const SizedBox(
-                  width: 160,
-                  height: 150,
-                  child: Center(child: Text('Voltage',
-                  style: kGetStartedButtonText)),
+        Expanded(
+          child: ElevatedButton(
+            onPressed: () {
+              updateVoltageData();
+            },
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+              elevation: MaterialStateProperty.all<double>(0), // Set elevation to 0 to remove shadow
+              shape: MaterialStateProperty.all<OutlinedBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
                 ),
               ),
-            
-          ),
-          backWidget: Center(
-              child: Card(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                child: const SizedBox(
-                  width: 160,
-                  height: 150,
-                  child: Center(child: Text('40 V',
-                  style: kGetStartedButtonText)),
-                ),
-              ),
-            
+            ),
+            child: buildCard('Voltage', voltageData, 'V', () {
+              updateVoltageData();
+            }),
           ),
         ),
       ],
     );
   }
+
+  Widget buildCard(String title, String data, String unit, VoidCallback onTapCallback) {
+    return Center(
+      child: Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        child: SizedBox(
+          width: 500, // Adjust the width as needed
+          height: 175,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                title,
+                style: kLogInScreenHeadingText, // Style for the title
+              ),
+              SizedBox(height: 20), // Add some spacing between title and data
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    data,
+                    style: kGetStartedButtonText, // Style for the data
+                  ),
+                  SizedBox(width: 5), // Add some spacing between data and unit
+                  Text(
+                    unit,
+                    style: kGetStartedButtonText, // Style for the unit
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  void readDataFromFirebase(String dataPath, Function(String) updateData) {
+    DatabaseReference reference = FirebaseDatabase.instance.ref();
+    reference.child(dataPath).once().then((DatabaseEvent event) {
+      if (event.snapshot != null) {
+        DataSnapshot snapshot = event.snapshot;
+        String newData = snapshot.value.toString();
+        print('Data: $newData');
+        updateData(newData);
+      } else {
+        print('Error: Snapshot is null');
+      }
+    }).catchError((error) {
+      print('Error reading data from Firebase: $error');
+    });
+  }
+
+  void updateCurrentData() {
+    readDataFromFirebase('/power_data/Current', (newData) {
+      setState(() {
+        currentData = newData;
+      });
+    });
+  }
+
+  void updateVoltageData() {
+    readDataFromFirebase('/power_data/Voltage', (newData) {
+      setState(() {
+        voltageData = newData;
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // Initial data retrieval when the widget is initialized
+    updateCurrentData();
+    updateVoltageData();
+  }
 }
 
-        // Card(
-        //   child: SizedBox(
-        //     width: 150,
-        //     height: 150,
-        //     child: Center(child: Text('Voltage')),
-        //   ),
-        // ),
-        // Card(
-        //   child: SizedBox(
-        //     width: 150,
-        //     height: 150,
-        //     child: Center(child: Text('Current')),
-        //   ),
-        // ),
- 
-class ElevatedCardExample2 extends StatelessWidget {
-  const ElevatedCardExample2({super.key, Key? keys});
+class ElevatedCardExample2 extends StatefulWidget {
+  @override
+  _ElevatedCardExampleState2 createState() => _ElevatedCardExampleState2();
+}
+
+class _ElevatedCardExampleState2 extends State<ElevatedCardExample2> {
+  final DatabaseReference databaseReference = FirebaseDatabase.instance.ref();
+  final controller = FlipCardController();
+
+  String powerData = '0 Watts'; // Initial data for power
 
   @override
   Widget build(BuildContext context) {
-    final controller = FlipCardController();
-
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        FlipCard(
-          rotateSide: RotateSide.top,
-          onTapFlipping: true,
-          axis: FlipAxis.horizontal,
-          controller: controller,
-          frontWidget: Center(
-              child: Card(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                child: const SizedBox(
-                  width: 175,
-                  height: 150,
-                  child: Center(child: Text('Time Left',
-                  style: kGetStartedButtonText)),
+        Expanded(
+          child: ElevatedButton(
+            onPressed: () {
+              updatePowerData();
+            },
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+              elevation: MaterialStateProperty.all<double>(0), // Set elevation to 0 to remove shadow
+              shape: MaterialStateProperty.all<OutlinedBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
                 ),
               ),
-            
-          ),
-          backWidget: Center(
-              child: Card(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                child: const SizedBox(
-                  width: 175,
-                  height: 150,
-                  child: Center(child: Text('10:30 S',
-                  style: kGetStartedButtonText)),
-                ),
-              ),
-            
-          ),
-        ),
-        FlipCard(
-          rotateSide: RotateSide.top,
-          onTapFlipping: true,
-          axis: FlipAxis.horizontal,
-          controller: controller,
-          frontWidget: Center(
-              child: Card(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                child: const SizedBox(
-                  width: 175,
-                  height: 150,
-                  child: Center(child: Text('Power',
-                  style: kGetStartedButtonText)),
-                ),
-              ),
-            
-          ),
-          backWidget: Center(
-              child: Card(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                child: const SizedBox(
-                  width: 175,
-                  height: 150,
-                  child: Center(child: Text('50 KWh', style: kGetStartedButtonText)),
-                ),
-              ),
-            
+            ),
+            child: buildCard('Power', powerData, 'Watts', () {
+              updatePowerData();
+            }),
           ),
         ),
       ],
     );
   }
-}
 
-// ignore: camel_case_types, non_constant_identifier_names
-class CircularIndicator extends StatelessWidget {
-  const CircularIndicator({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return CircularPercentIndicator(
-      radius: 100.0,
-      lineWidth: 13.0,
-      animation: true,
-      percent: 0.95,
-      center: const Text(
-        "95%",
-        style: kLogInScreenHeadingText //new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+  Widget buildCard(String title, String data, String unit, VoidCallback onTapCallback) {
+    return Center(
+      child: Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        child: SizedBox(
+          width: 200, // Adjust the width as needed
+          height: 150,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                title,
+                style: kLogInScreenHeadingText, // Style for the title
+              ),
+              SizedBox(height: 10), // Add some spacing between title and data
+              Text(
+                data,
+                style: kGetStartedButtonText, // Style for the data
+              ),
+              SizedBox(height: 10), // Add some spacing between data and additional text
+              Text(
+                unit,
+                style: kGetStartedButtonText, // Style for the additional text
+              ),
+            ],
+          ),
+        ),
       ),
-      footer: const Text(
-        "Charging Percentage",
-        style: kLogInScreenHeadingText//new TextStyle(fontWeight: FontWeight.bold, fontSize: 19.0),
-      ),
-      circularStrokeCap: CircularStrokeCap.round,
-      progressColor: const Color.fromARGB(255, 6, 66, 131),
     );
   }
+
+  void readDataFromFirebase(String dataPath, Function(String) updateData) {
+    DatabaseReference reference = FirebaseDatabase.instance.ref();
+    reference.child(dataPath).once().then((DatabaseEvent event) {
+      if (event.snapshot != null) {
+        DataSnapshot snapshot = event.snapshot;
+        String newData = snapshot.value.toString();
+        print('Data: $newData');
+        updateData(newData);
+      } else {
+        print('Error: Snapshot is null');
+      }
+    }).catchError((error) {
+      print('Error reading data from Firebase: $error');
+    });
+  }
+
+  void updatePowerData() {
+    readDataFromFirebase('/power_data/Power', (newData) {
+      setState(() {
+        powerData = newData;
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // Initial data retrieval when the widget is initialized
+    updatePowerData();
+  }
 }
-
-

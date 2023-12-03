@@ -56,12 +56,6 @@ const kMetricsValueTextStyle = TextStyle(
   fontWeight: FontWeight.w500,
 );
 
-const kMetricsValueSecondaryTextStyle = TextStyle(
-  fontSize: 24,
-  fontFamily: "Poppins",
-  color: kThemeTertiaryColor,
-  fontWeight: FontWeight.w500,
-);
 
 const kDashboardTimeBodyText = TextStyle(
   fontSize: 12,

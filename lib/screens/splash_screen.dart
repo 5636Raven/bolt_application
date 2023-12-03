@@ -1,7 +1,6 @@
 import 'dart:async';
-//import 'dart:html';
 import 'package:flutter/material.dart';
-import 'package:bolt_app/screens/dashboad.dart';
+import 'package:bolt_app/screens/sign_in_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key, required this.title}) : super(key: key);
@@ -9,11 +8,9 @@ class SplashScreen extends StatefulWidget {
   final String title;
 
   @override
-  
   _SplashScreenState createState() => _SplashScreenState();
 }
 
-@override
 class _SplashScreenState extends State<SplashScreen> {
   bool _isVisible = false;
 
@@ -21,15 +18,14 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(const Duration(milliseconds: 5000), () {
       setState(() {
         Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => const dashboard()),
+            MaterialPageRoute(builder: (context) => SignInScreen()),
             (route) => false);
       });
     });
 
     Timer(const Duration(milliseconds: 10), () {
       setState(() {
-        _isVisible =
-            true; // Now it is showing fade effect and navigating to Login page
+        _isVisible = true; // Now it is showing fade effect and navigating to SignInScreen
       });
     });
   }
@@ -68,7 +64,8 @@ class _SplashScreenState extends State<SplashScreen> {
                   )
                 ]),
             child: Center(
-              child: Image.asset('/Users/ravenlopez/Documents/Bolt/bolt_app/assets/bolt_logo1.png'),
+              child: Image.asset(
+                  '/Users/ravenlopez/Desktop/bolt/bolt_application/assets/bolt_logo1.png'),
             ),
           ),
         ),
